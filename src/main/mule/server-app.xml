@@ -6,15 +6,14 @@
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd">
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="91e57e15-4cbe-44c7-b5d8-7dfa302bb851" >
-		<http:listener-connection host="0.0.0.0" port="8081" >
+		<http:listener-connection host="0.0.0.0" port="8081" protocol="HTTPS">
 			<tls:context >
-				<tls:trust-store type="jceks" />
 				<tls:key-store type="jks" path="server-keystore.jks" alias="server" keyPassword="Monday$100" password="Monday$100" />
 			</tls:context>
 		</http:listener-connection>
 	</http:listener-config>
 	<flow name="server-appFlow" doc:id="58b189b8-5639-422f-bd94-1d5b520ef12b" >
 		<http:listener doc:name="Listener" doc:id="d0cd033a-0fe1-4d75-a12c-95aa5a1ed3bd" config-ref="HTTP_Listener_config" path="/serverapp"/>
-		<logger level="INFO" doc:name="Logger" doc:id="2fe301bd-427d-45ce-b1cb-1de908b7ccfb" message="SetUp Key Store on server"/>
+		<logger level="INFO" doc:name="Logger" doc:id="2fe301bd-427d-45ce-b1cb-1de908b7ccfb" message="ServerApp: SetUp Key Store on server"/>
 	</flow>
 </mule>
